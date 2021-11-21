@@ -1,9 +1,10 @@
-
+const { Router } = require('express');
 const { getAllTodos, deleteTodo, addTodo, updateTodo } = require('../controllers/todos')
 
-module.exports = (app) => {
-    app.get('/api/todos', getAllTodos);
-    app.delete('/api/todos/:todoId', deleteTodo)
-    app.post('/api/todos', addTodo)
-    app.put('/api/todos/:todoId', updateTodo)
+module.exports = () => {
+    const router = Router();
+    router.get('/api/todos', getAllTodos);
+    router.delete('/api/todos/:todoId', deleteTodo)
+    router.post('/api/todos', addTodo)
+    router.put('/api/todos/:todoId', updateTodo)
 }

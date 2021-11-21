@@ -1,0 +1,45 @@
+* {
+box-sizing: border-box;
+padding: 0;
+margin: 0;
+font-family: cursive;
+}
+
+form {
+    margin: 10px auto;
+    width: 300px;
+    padding: 10px;
+    border: 3px dotted limegreen;
+    text-align: center;
+}
+
+ul {
+    margin: 10px;
+    padding: 10px;
+    text-align: left;
+}
+
+#newTask {
+    max-width: 270px;
+    max-height: 70px;
+    padding: 3px;
+
+}
+
+.addTaskButton {
+    cursor: pointer;
+    padding: 3px;
+}
+
+h1 {
+    color: blueviolet;
+}
+
+li.task {
+    color: tomato;
+    list-style-type:circle;
+}
+
+h3 {
+    text-align: left;
+}
