@@ -1,6 +1,6 @@
 const express = require('express');
 // const core = require('core');
-const todosRouter = require('./routes/todos');
+const {todosRouter} = require('./routes/todos');
 
 const app = express();
 

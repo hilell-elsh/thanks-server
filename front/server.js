@@ -1,11 +1,13 @@
 
 
 export async function getAllTodos() {
-    const response = await fetch("http://localhost:5114/api/todos",
-        {
-            method: "GET"
-        })
-    return await response.json()
+    try {
+        const allTodos = await fetch("http://localhost:5114/api/todos")
+        return await allTodos.json();
+
+    } catch (err) {
+       console.log(err)
+    }
 }
 
 export async function deleteTodo(todoId) {

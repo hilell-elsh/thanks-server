@@ -1,36 +1,43 @@
 const { getTodos, setTodos } = require('../services/todos');
 
-const getAllTodos = (req, res) => {
-    res.json(getTodos());
+const getAllTodos = async (req, res) => {
+    console.log("get request");
+    const allTodos = await getTodos();
+    res.json(allTodos);
     res.end();
 }
 
-const deleteTodo = (req, res) => {
+const deleteTodo = async (req, res) => {
     const { todoId } = req.params;
-    const todos = getTodos();
+    const todos = await getTodos();
     console.log(todos.find(todo => todo.id === todoId));
     console.log(todos.filter(todo => todo.id !== todoId));
     res.json(todos.find(todo => todo.id === todoId));
-    setTodos(todos.filter(todo => todo.id !== todoId));
+    await setTodos(todos.filter(todo => todo.id !== todoId));
     res.end();
 }
 
-const addTodo = (req, res) => {
+const addTodo = async (req, res) => {
     const newTodo = req.body;
-    const todos = getTodos();
-    setTodos([newTodo, ...getTodos()]);
+    const todos = await getTodos();
+    await setTodos([newTodo, ...todos]);
     res.json(newTodo);
     res.end();
 }
 
-const updateTodo = (req, res) => {
+const updateTodo = async (req, res) => {
     const { todoId } = req.params;
-    const updateTodo = req.body;
-    const todos = getTodos();
-    const replaceIndex = todos.findIndex(todo => todo.id === todoId);
-    todos[replaceIndex] = updateTodo;
-    setTodos(todos);
-    res.json(updateTodo);
+    const updatedTodo = req.body;
+    const todos = await getTodos();
+
+    // const replaceIndex = todos.findIndex(todo => todo.id === todoId);
+    // todos[replaceIndex] = updatedTodo;
+    
+    const editedTodo = todos.find(({id}) => id === todoId);
+    Object.assign(editedTodo, updatedTodo)
+    
+    await setTodos(todos);
+    res.json(updatedTodo);
     res.end();
 }
 

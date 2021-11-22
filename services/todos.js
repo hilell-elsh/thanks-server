@@ -1,13 +1,14 @@
 
-const fs = require('fs');
+const fs = require('fs/promises');
 const STORE_PATH = '../todos.json';
 
-function getTodos() {
-    return require(STORE_PATH);
+async function getTodos() {
+    const data = await fs.readFile(STORE_PATH)
+    return JSON.parse(data.toString());
 }
 
-function setTodos(todos=[]) {
-    fs.writeFileSync(STORE_PATH, JSON.stringify(todos));
+async function setTodos(todos=[]) {
+    await fs.writeFile(STORE_PATH, JSON.stringify(todos));
 }
 
 module.exports = {
