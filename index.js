@@ -1,12 +1,19 @@
+require('dotenv').config();
 const express = require('express');
+
+const connectToDb = require('./models');
+
 // const core = require('core');
-const {todosRouter} = require('./routes/todos');
+
+const port = process.env.PORT || 5115;
 
 const app = express();
-
-const PORT = 5114;
-
 app.use(express.json());
-app.use(todosRouter);
+// app.use(core());
+require('./routes/todos')(app);
+// const todosRouter = 
+// app.use(todosRouter);
 
-app.listen(PORT, ()=>console.log("app is running in port: " + PORT));
+
+connectToDb()
+    .then(app.listen(port, ()=>console.log("app is running in port: " + port)));

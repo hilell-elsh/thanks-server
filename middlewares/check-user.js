@@ -1,4 +1,4 @@
-
+const { getUsers } = require('../services/users')
 
 async function checkUser(req, res, next) {
     const userId = req.headers['user-id'];

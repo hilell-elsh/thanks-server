@@ -1,9 +1,9 @@
 
 const fs = require('fs/promises');
-const STORE_PATH = '../todos.json';
+const STORE_PATH = './todos.json';
 
 async function getTodos() {
-    const data = await fs.readFile(STORE_PATH)
+    const data = await fs.readFile(STORE_PATH);
     return JSON.parse(data.toString());
 }
 

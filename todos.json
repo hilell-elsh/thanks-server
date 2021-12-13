@@ -1,13 +1,1 @@
-[
-    {
-        "id":"1636009230851",
-        "text":"read a ma'amar",
-        "doned":false
-    },
-
-    {
-        "id":"1635800670350",
-        "text":"pick up",
-        "doned":false
-    }
-]
+[{"id":"135","text":"init","doned":true,"userId":"1","user":"Administrator"},{"id":"135431","text":"try","doned":false,"userId":"2","user":"hilell"},{"id":"1635800670350","text":"pick up","doned":false,"userId":"1"}]

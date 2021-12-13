@@ -1,9 +1,21 @@
 const { getTodos, setTodos } = require('../services/todos');
 
 const getAllTodos = async (req, res) => {
-    console.log("get request");
-    const allTodos = await getTodos();
-    res.json(allTodos);
+    console.log("getAllTodos request");
+    console.log(req.userId);
+    const allTodos = (await getTodos()).filter(todos => todos.userId === req.userId);;
+    res.json(allTodos)
+    res.end();
+}
+
+const getOneTodo = async (req, res) => {
+    console.log("getOneTodo request");
+    const { todoId } = req.params;
+    console.log(todoId);
+    const todos = await getTodos();
+    console.log(todos);
+    console.log(todos.find(({id}) => id === todoId));
+    res.json(todos.find(({id}) => id === todoId));
     res.end();
 }
 
@@ -20,7 +32,7 @@ const deleteTodo = async (req, res) => {
 const addTodo = async (req, res) => {
     const newTodo = req.body;
     const todos = await getTodos();
-    await setTodos([newTodo, ...todos]);
+    await setTodos([{...newTodo, "user": req.user.username}, ...todos]);
     res.json(newTodo);
     res.end();
 }
@@ -43,6 +55,7 @@ const updateTodo = async (req, res) => {
 
 module.exports = {
     getAllTodos,
+    getOneTodo,
     deleteTodo,
     addTodo,
     updateTodo
